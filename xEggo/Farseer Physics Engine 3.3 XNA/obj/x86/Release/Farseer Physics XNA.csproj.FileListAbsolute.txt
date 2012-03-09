@@ -1,0 +1,6 @@
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Farseer Physics Engine 3.3 XNA\bin\x86\Release\FarseerPhysicsXNA.dll
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Farseer Physics Engine 3.3 XNA\bin\x86\Release\FarseerPhysicsXNA.pdb
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Farseer Physics Engine 3.3 XNA\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Farseer Physics Engine 3.3 XNA\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Farseer Physics Engine 3.3 XNA\obj\x86\Release\FarseerPhysicsXNA.dll
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Farseer Physics Engine 3.3 XNA\obj\x86\Release\FarseerPhysicsXNA.pdb
