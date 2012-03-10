@@ -2,14 +2,18 @@ Content\enemy-bite-spritesheet.xnb
 Content\enemy-death-spritesheet.xnb
 Content\enemy-walking-spritesheet.xnb
 Content\hit sprite sheet.xnb
-Content\idle.xnb
 Content\walking-10-frame-eggo-spritesheet.xnb
-Content\Courier New.xnb
 Content\Materials\blank.xnb
 Content\Materials\dots.xnb
 Content\Materials\pavement.xnb
 Content\Materials\squares.xnb
 Content\Materials\waves.xnb
-Content\lines.xnb
 Content\background-800 480.xnb
+Content\double axe.xnb
+Content\farram.xnb
+Content\jump-sheet.xnb
+Content\uppercut-spritesheet.xnb
+Content\idle.xnb
+Content\Courier New.xnb
+Content\lines.xnb
 Content\font.xnb

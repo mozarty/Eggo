@@ -34,8 +34,7 @@ namespace Eggo.Entities
         List<Rectangle> dyingAnim = new List<Rectangle>();
 
         public ZombieEnemy() {
-            myBody = BodyFactory.CreateRectangle(Eggo.world, 200f, 171f, 1f);
-            myBody.BodyType = BodyType.Static;
+
             //myBody.ApplyForce(new Vector2(100f,100f));
             //myBody.ApplyTorque(100f);
             
@@ -82,10 +81,12 @@ namespace Eggo.Entities
             rect = new Rectangle(1200, 0, 200, 217);
             dyingAnim.Add(rect);
 
+            scale = 0.25f;
 
+            myBody = BodyFactory.CreateCircle(Eggo.world, 100f * scale, 1f);
+            myBody.BodyType = BodyType.Dynamic;
             myBody.Position = new Vector2(800, 120);
 
-            scale = 0.25f;
         }
         public override void load(ContentManager content)
         {
@@ -97,6 +98,12 @@ namespace Eggo.Entities
             fillTextureData(biteTextureData,biteAnim,biteSheet);
             fillTextureData(dyingTextureData,dyingAnim,dyingSheet);
 
+        
+            walk();
+            currentFlip = SpriteEffects.None;
+        }
+
+        public void walk() {
             mSpriteTexture = walkingSheet;
             mTextureData = walkingTextureData[0];
             mDrawingRectangle = walkingAnim[0];
@@ -104,15 +111,22 @@ namespace Eggo.Entities
             mCurrentState = State.Walking;
             mSpeed.X = WALKING_SPEED;
             mSpeed.Y = WALKING_SPEED;
-            if (isFalling) { 
-                mDirection.Y = MOVE_DOWN; 
-            } else
+            if (isFalling)
             {
-                mDirection.X = MOVE_LEFT;
+                mDirection.Y = MOVE_DOWN;
             }
-            currentFlip = SpriteEffects.None;
+            else
+            {
+                if (position.X >= Level.player.position.X)
+                {
+                    mDirection.X = MOVE_LEFT;
+                    currentFlip = SpriteEffects.None;
+                }
+                else { mDirection.X = MOVE_RIGHT; currentFlip = SpriteEffects.FlipHorizontally; }
+                
+                
+            }
         }
-
 
         public override void die() {
             if (mCurrentState != State.Dying)
@@ -123,10 +137,7 @@ namespace Eggo.Entities
                 mDirection = Vector2.Zero;
                 Eggo.score += 10;
                 
-                //myBody.DestroyFixture(myBody.FixtureList[0]);
-                //myBody.Dispose();
-                ///myBody = null;
-            }
+           }
         }
 
         public override void hit()
@@ -173,11 +184,6 @@ namespace Eggo.Entities
                         currentAnimIndex++;
                     }
                     break;
-                case State.Standing:
-                    mSpriteTexture = walkingSheet;
-                    mTextureData = walkingTextureData[0];
-                    mDrawingRectangle = walkingAnim[0];
-                    break;
                 case State.Dying:
                     mSpriteTexture = dyingSheet;
                     
@@ -193,20 +199,25 @@ namespace Eggo.Entities
                     }
                     break;
                 case State.Attacking:
-                    
-                    mSpriteTexture = biteSheet;
-                    
-                    if (timeSinceLastUpdate > ATTACK_SPEED)
+                    if (boundingRectangle.Intersects(Level.player.boundingRectangle))
                     {
-                        timeSinceLastUpdate = 0;
+                        mSpriteTexture = biteSheet;
 
-                        if (currentAnimIndex >= biteAnim.Count)
-                            currentAnimIndex = 0;
+                        if (timeSinceLastUpdate > ATTACK_SPEED)
+                        {
+                            timeSinceLastUpdate = 0;
 
-                        mDrawingRectangle = biteAnim[currentAnimIndex];
-                        mTextureData = biteTextureData[currentAnimIndex];
-                        currentAnimIndex++;
+                            if (currentAnimIndex >= biteAnim.Count)
+                                currentAnimIndex = 0;
 
+                            mDrawingRectangle = biteAnim[currentAnimIndex];
+                            mTextureData = biteTextureData[currentAnimIndex];
+                            currentAnimIndex++;
+
+                        }
+                    }
+                    else {
+                        walk();
                     }
                     break;
             }

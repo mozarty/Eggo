@@ -30,7 +30,7 @@ namespace Eggo.Entities
         private Random random;
 
         private Texture2D background;
-        Player player;
+        public static Player player;
         Ground ground;
         public List<Enemy> enemies;
 
@@ -146,7 +146,11 @@ namespace Eggo.Entities
                 levelEnemies.Add(en);
             }
 
-            player = new Player((int)playerPos.X);
+
+            if (player == null)
+                player = new Player((int)playerPos.X);
+            else
+                player.position = new Vector2((int)playerPos.X, player.position.Y);
             ground = new Ground();
             enemies = new List<Enemy>();
 
@@ -223,7 +227,7 @@ namespace Eggo.Entities
                 enemy.update(gameTime);
 
                 // Check collision with person
-                if (GameObject.IntersectPixels(player, enemy))
+                if ( player.boundingRectangle.Intersects(enemy.boundingRectangle))
                 {
                     player.hit(enemy);
                     enemy.hit();

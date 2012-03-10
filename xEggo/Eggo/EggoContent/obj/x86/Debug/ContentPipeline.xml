@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\enemy-bite-spritesheet.xnb</Output>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\enemy-bite-spritesheet.xnb</Output>
       <Time>2012-02-26T00:55:47.8939366+02:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\enemy-death-spritesheet.xnb</Output>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\enemy-death-spritesheet.xnb</Output>
       <Time>2012-02-26T00:55:47.8969368+02:00</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\enemy-walking-spritesheet.xnb</Output>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\enemy-walking-spritesheet.xnb</Output>
       <Time>2012-02-26T00:55:47.8989369+02:00</Time>
     </Item>
     <Item>
@@ -34,17 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\hit sprite sheet.xnb</Output>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\hit sprite sheet.xnb</Output>
       <Time>2012-02-28T13:21:56.7891919+02:00</Time>
-    </Item>
-    <Item>
-      <Source>idle.png</Source>
-      <Name>idle</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\idle.xnb</Output>
-      <Time>2012-02-28T13:16:43.4742714+02:00</Time>
     </Item>
     <Item>
       <Source>walking-10-frame-eggo-spritesheet.png</Source>
@@ -52,17 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\walking-10-frame-eggo-spritesheet.xnb</Output>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\walking-10-frame-eggo-spritesheet.xnb</Output>
       <Time>2012-02-28T13:20:39.9547973+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Courier New.spritefont</Source>
-      <Name>Courier New</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Courier New.xnb</Output>
-      <Time>2010-08-26T14:57:28+03:00</Time>
     </Item>
     <Item>
       <Source>Materials\blank.png</Source>
@@ -70,7 +52,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Materials\blank.xnb</Output>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Materials\blank.xnb</Output>
       <Time>2011-03-20T00:00:30+02:00</Time>
     </Item>
     <Item>
@@ -79,7 +61,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Materials\dots.xnb</Output>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Materials\dots.xnb</Output>
       <Time>2011-03-20T00:00:30+02:00</Time>
     </Item>
     <Item>
@@ -88,7 +70,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Materials\pavement.xnb</Output>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Materials\pavement.xnb</Output>
       <Time>2011-03-20T00:00:30+02:00</Time>
     </Item>
     <Item>
@@ -97,7 +79,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Materials\squares.xnb</Output>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Materials\squares.xnb</Output>
       <Time>2011-03-20T00:00:30+02:00</Time>
     </Item>
     <Item>
@@ -106,17 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Materials\waves.xnb</Output>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Materials\waves.xnb</Output>
       <Time>2011-03-20T00:00:30+02:00</Time>
-    </Item>
-    <Item>
-      <Source>lines.fx</Source>
-      <Name>lines</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\lines.xnb</Output>
-      <Time>2012-02-29T20:12:28.6026418+02:00</Time>
     </Item>
     <Item>
       <Source>background-800 480.jpg</Source>
@@ -124,8 +97,71 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\background-800 480.xnb</Output>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\background-800 480.xnb</Output>
       <Time>2012-03-02T18:36:51.7784471+02:00</Time>
+    </Item>
+    <Item>
+      <Source>double axe.png</Source>
+      <Name>double axe</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\double axe.xnb</Output>
+      <Time>2012-03-10T19:30:04.2436057+02:00</Time>
+    </Item>
+    <Item>
+      <Source>farram.png</Source>
+      <Name>farram</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\farram.xnb</Output>
+      <Time>2012-03-10T19:31:03.5549981+02:00</Time>
+    </Item>
+    <Item>
+      <Source>jump-sheet.png</Source>
+      <Name>jump-sheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\jump-sheet.xnb</Output>
+      <Time>2012-03-10T19:31:48.1785504+02:00</Time>
+    </Item>
+    <Item>
+      <Source>uppercut-spritesheet.png</Source>
+      <Name>uppercut-spritesheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\uppercut-spritesheet.xnb</Output>
+      <Time>2012-03-10T19:36:49.8908074+02:00</Time>
+    </Item>
+    <Item>
+      <Source>idle.png</Source>
+      <Name>idle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\idle.xnb</Output>
+      <Time>2012-03-10T19:56:55.2037473+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Courier New.spritefont</Source>
+      <Name>Courier New</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\Courier New.xnb</Output>
+      <Time>2010-08-26T14:57:28+03:00</Time>
+    </Item>
+    <Item>
+      <Source>lines.fx</Source>
+      <Name>lines</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\lines.xnb</Output>
+      <Time>2012-02-29T20:12:28.6026418+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -133,10 +169,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\EggoContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\EggoContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\EggoContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\EggoContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\Eggo\Eggo\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

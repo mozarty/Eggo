@@ -18,3 +18,13 @@ C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\DebugView XNA\obj\x86\
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\DebugView XNA\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\DebugView XNA\obj\x86\Debug\DebugViewXNA.dll
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\DebugView XNA\obj\x86\Debug\DebugViewXNA.pdb
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\DebugView XNA\bin\x86\Debug\Content\font.xnb
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\DebugView XNA\bin\x86\Debug\DebugViewXNA.dll
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\DebugView XNA\bin\x86\Debug\DebugViewXNA.pdb
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\DebugView XNA\bin\x86\Debug\FarseerPhysicsXNA.dll
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\DebugView XNA\bin\x86\Debug\FarseerPhysicsXNA.pdb
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\DebugView XNA\bin\x86\Debug\FarseerPhysicsXNA.xml
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\DebugView XNA\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\DebugView XNA\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\DebugView XNA\obj\x86\Debug\DebugViewXNA.dll
+C:\Users\DELL\Documents\Visual Studio 2010\Projects\Eggo\xEggo\DebugView XNA\obj\x86\Debug\DebugViewXNA.pdb

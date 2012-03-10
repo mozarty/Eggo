@@ -22,7 +22,7 @@ namespace Eggo.Entities
         const int ATTACK_SPEED = 100;
         const int JUMP_SPEED = 100;
 
-        int xPosition;
+        int startXPosition;
 
         Texture2D walkingSheet;
         Texture2D hitSheet;
@@ -38,38 +38,20 @@ namespace Eggo.Entities
 
         public Player(int xPos)
         {
-            this.xPosition = xPos;
+            this.startXPosition = xPos;
 
-            Rectangle rect;
-
-            for (int i = 0; i < 10; i++)
-            {
-                rect = new Rectangle(200 * i, 0, 200, 205);
-                walkingAnim.Add(rect);
-            }
-            for (int i = 0; i < 6; i++)
-            {
-                rect = new Rectangle(200 * i, 0, 200, 205);
-                hitAnim.Add(rect);
-            }
-
-            rect = new Rectangle(0, 0, 200, 205);
-            idleAnim.Add(rect);
-
-
-
-            scale = 0.5f;
+            this.initPlayer();
         }
+
         private void createBody(){
         //myBody = CreateBodyFromImage(Eggo.getInstance().Content, idleSheet);
-            myBody = BodyFactory.CreateRectangle(Eggo.world, 200, 205, 1);
+            myBody = BodyFactory.CreateRectangle(Eggo.world, 200 * scale, 204 * scale, 1);
             myBody.BodyType = BodyType.Static;
-            myBody.Position = new Vector2(this.xPosition, 350);
+            myBody.Position = new Vector2(this.startXPosition, 350);
         }
-        public Player() {
 
-            
-            
+        public void initPlayer() {
+
             //myBody.ApplyForce(new Vector2(100f, 100f));
             //myBody.ApplyTorque(100f);
 
@@ -85,12 +67,14 @@ namespace Eggo.Entities
                 hitAnim.Add(rect);
             }
 
-            rect = new Rectangle(0, 0, 200, 205);
-            idleAnim.Add(rect);
-
-            
+            for (int i = 0; i < 4; i++)
+            {
+                rect = new Rectangle(200 * i, 0, 200, 205);
+                idleAnim.Add(rect);
+            }
 
             scale = 0.5f;
+            createBody();
         }
         
          public override void load(ContentManager content)
@@ -107,10 +91,7 @@ namespace Eggo.Entities
             mTextureData = idleTextureData[0];
             mDrawingRectangle = idleAnim[0];
 
-            createBody();
         }
-
-         
 
          public void update(GameTime gameTime)
         {
@@ -199,9 +180,19 @@ namespace Eggo.Entities
                       break;
                  case State.Standing:
                       mSpriteTexture = idleSheet;
-                      mTextureData = idleTextureData[0];
-                      mDrawingRectangle = idleAnim[0];
-                      break;
+                      
+                      if (timeSinceLastUpdate > WALKING_SPEED )
+                      {
+                          timeSinceLastUpdate = 0;
+                          if (currentAnimIndex >= idleAnim.Count)
+                              currentAnimIndex = 0;
+
+                          mDrawingRectangle = idleAnim[currentAnimIndex];
+                          mTextureData = idleTextureData[currentAnimIndex];
+                            currentAnimIndex++;
+                      }
+         
+ break;
                  case State.Attacking:
                       mSpriteTexture = hitSheet;
                       
@@ -226,15 +217,17 @@ namespace Eggo.Entities
              }
          }
 
+         
+
          private void hurtSurroundingEnemies()
          {
              foreach (Enemy enemy in Level.GetInstance().enemies)
              {
-                 Boolean isIntersect = IntersectPixels(this, enemy);
+                 Boolean isIntersect = boundingRectangle.Intersects(enemy.boundingRectangle); //IntersectPixels(this, enemy);
                  Boolean hitRight = (enemy.position.X >= position.X && currentFlip == SpriteEffects.None);
                  Boolean hitLeft= (enemy.position.X <= position.X && currentFlip == SpriteEffects.FlipHorizontally);
                  // Check collision with person
-                 if  (isIntersect&& ( hitRight|| hitLeft ))
+                 if  (isIntersect && ( hitRight|| hitLeft ))
                  {
                      enemy.die();
                  }
@@ -279,7 +272,7 @@ namespace Eggo.Entities
                      aCurrentKeyboardState.IsKeyUp(Keys.Down) &&
                          aCurrentKeyboardState.IsKeyUp(Keys.Left) && aCurrentKeyboardState.IsKeyUp(Keys.Right) && mCurrentState!=State.Attacking && mCurrentState!=State.Jumping)
                  {
-                     currentAnimIndex = 0;
+                     //currentAnimIndex = 0;
                      mCurrentState = State.Standing;
                      mSpeed = Vector2.Zero;
                      mDirection = Vector2.Zero;

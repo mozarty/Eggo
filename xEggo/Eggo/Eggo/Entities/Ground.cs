@@ -20,11 +20,11 @@ namespace Eggo.Entities
             
             myBody = BodyFactory.CreateRectangle(Eggo.world,Eggo.getInstance().Window.ClientBounds.Width*2, 1f, 1f);
             myBody.BodyType = BodyType.Static;
-            myBody.Position = new Microsoft.Xna.Framework.Vector2(0, Eggo.getInstance().Window.ClientBounds.Height-10);
+            myBody.Position = new Microsoft.Xna.Framework.Vector2(0, Eggo.getInstance().Window.ClientBounds.Height-40);
             myBody.IsStatic = true;
             myBody.Restitution = 0.0f;
-            myBody.Friction = 0.0f; 
-            mDrawingRectangle = new Rectangle(0, 0, Eggo.getInstance().Window.ClientBounds.Width, 1);
+            myBody.Friction = 0.0f;
+            mDrawingRectangle = new Rectangle(0, 0, Eggo.getInstance().Window.ClientBounds.Width * 2, 1);
         }
 
          public override void load(ContentManager content){ }
