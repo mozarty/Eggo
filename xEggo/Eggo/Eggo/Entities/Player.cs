@@ -22,6 +22,8 @@ namespace Eggo.Entities
         const int ATTACK_SPEED = 100;
         const int JUMP_SPEED = 100;
 
+        int xPosition;
+
         Texture2D walkingSheet;
         Texture2D hitSheet;
         Texture2D idleSheet;
@@ -33,13 +35,36 @@ namespace Eggo.Entities
         List<Rectangle> walkingAnim = new List<Rectangle>();
         List<Rectangle> hitAnim = new List<Rectangle>();
         List<Rectangle> idleAnim = new List<Rectangle>();
-        
 
+        public Player(int xPos)
+        {
+            this.xPosition = xPos;
+
+            Rectangle rect;
+
+            for (int i = 0; i < 10; i++)
+            {
+                rect = new Rectangle(200 * i, 0, 200, 205);
+                walkingAnim.Add(rect);
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                rect = new Rectangle(200 * i, 0, 200, 205);
+                hitAnim.Add(rect);
+            }
+
+            rect = new Rectangle(0, 0, 200, 205);
+            idleAnim.Add(rect);
+
+
+
+            scale = 0.5f;
+        }
         private void createBody(){
         //myBody = CreateBodyFromImage(Eggo.getInstance().Content, idleSheet);
             myBody = BodyFactory.CreateRectangle(Eggo.world, 200, 205, 1);
             myBody.BodyType = BodyType.Static;
-            myBody.Position = new Vector2(100, 350);
+            myBody.Position = new Vector2(this.xPosition, 350);
         }
         public Player() {
 
@@ -203,7 +228,7 @@ namespace Eggo.Entities
 
          private void hurtSurroundingEnemies()
          {
-             foreach (Enemy enemy in Eggo.getInstance().enemies)
+             foreach (Enemy enemy in Level.GetInstance().enemies)
              {
                  Boolean isIntersect = IntersectPixels(this, enemy);
                  Boolean hitRight = (enemy.position.X >= position.X && currentFlip == SpriteEffects.None);
@@ -287,7 +312,7 @@ namespace Eggo.Entities
         }
 
         private void DrawIntersections(SpriteBatch spriteBatch ){
-        foreach (Enemy enemy in Eggo.getInstance().enemies)
+        foreach (Enemy enemy in Level.GetInstance().enemies)
             {
                 Rectangle rectangleA = boundingRectangle; Color[] dataA = TextureData;
                 Rectangle rectangleB = enemy.boundingRectangle; Color[] dataB = enemy.TextureData;

@@ -23,6 +23,8 @@ namespace Eggo.Entities
 
         public Boolean isFalling = false;
 
+        public static int numberOfAliveEnemies = 0;
+
         List<Color[]> walkingTextureData=new List<Color[]>();
         List<Color[]> biteTextureData=new List<Color[]>();
         List<Color[]> dyingTextureData = new List<Color[]>();

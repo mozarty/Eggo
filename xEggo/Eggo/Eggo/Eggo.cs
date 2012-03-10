@@ -30,7 +30,8 @@ namespace Eggo
         // Percentage of the screen on every side is the safe area
         const float SafeAreaPortion = 0.04f;
         Random random = new Random();
-        Ground ground;
+        //Ground ground;
+        Level level;
         float enemySpawnProbability = 0.01f;
         float enemyTypeProbability = 0.5f;
 
@@ -38,11 +39,11 @@ namespace Eggo
         Vector2 scorePos;
         public static int score = 0;
         public static World world;
-        Player player;
+        //Player player;
         Texture2D background;
         public AssetCreator assetCreator;
         // Blocks
-        public List<Enemy> enemies = new List<Enemy>();
+        //public List<Enemy> enemies = new List<Enemy>();
 
 
         public static Eggo getInstance() { if (instance == null) return new Eggo(); else return instance; }
@@ -85,9 +86,9 @@ namespace Eggo
                 (int)(viewport.Width * (1 - 2 * SafeAreaPortion)),
                 (int)(viewport.Height * (1 - 2 * SafeAreaPortion)));
 
-            player = new Player();
-            ground = new Ground();
-
+            //player = new Player();
+            //ground = new Ground();
+            level = new Level("Levels/TheInsider_XML");
             assetCreator = new AssetCreator(GraphicsDevice);
             base.Initialize();
         }
@@ -104,15 +105,16 @@ namespace Eggo
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             font = Content.Load<SpriteFont>("Courier New");
-            background = Content.Load<Texture2D>("background-800 480");
+            //background = Content.Load<Texture2D>("background-800 480");
             // TODO: Load your game content here            
             scorePos = new Vector2(graphics.GraphicsDevice.Viewport.Width /2, 10);
 
             // TODO: use this.Content to load your game content here
-            player.load(this.Content);
+            //player.load(this.Content);
 
-            ground.load(this.Content);
+            //ground.load(this.Content);
 
+            level.Load(this.Content, Window);
             // Loading may take a while... so prevent the game from "catching up" once we finished loading
             this.ResetElapsedTime();
         }
@@ -141,49 +143,50 @@ namespace Eggo
                 this.Exit();
 
             // Spawn new enemies
-            if (random.NextDouble() < enemySpawnProbability)
-            {
-                //Only zombies are supported now
-                Enemy enemy = new ZombieEnemy();
+            //if (random.NextDouble() < enemySpawnProbability)
+            //{
+            //    //Only zombies are supported now
+            //    Enemy enemy = new ZombieEnemy();
                 
-                if (random.NextDouble() > enemyTypeProbability)
-                {
-                    float y = (float)random.NextDouble() *
-                        (Window.ClientBounds.Height - enemy.boundingRectangle.Height);
-                    enemy.position = new Vector2(Window.ClientBounds.Width, y);
-                }
-                else {
-                    float x = (float)random.NextDouble() *
-                    (Window.ClientBounds.Width - enemy.boundingRectangle.Width);
-                    enemy.position = new Vector2(x, 0);
-                    ((ZombieEnemy)enemy).isFalling = true;
-                }
-                enemy.load(this.Content);
-                enemies.Add(enemy);
-            }
+            //    if (random.NextDouble() > enemyTypeProbability)
+            //    {
+            //        float y = (float)random.NextDouble() *
+            //            (Window.ClientBounds.Height - enemy.boundingRectangle.Height);
+            //        enemy.position = new Vector2(Window.ClientBounds.Width, y);
+            //    }
+            //    else {
+            //        float x = (float)random.NextDouble() *
+            //        (Window.ClientBounds.Width - enemy.boundingRectangle.Width);
+            //        enemy.position = new Vector2(x, 0);
+            //        ((ZombieEnemy)enemy).isFalling = true;
+            //    }
+            //    enemy.load(this.Content);
+            //    enemies.Add(enemy);
+            //}
 
             // TODO: Add your update logic here
-            player.update(gameTime);
-            ground.update(gameTime);
-            //update enemies and Check for collision
-            foreach (Enemy enemy in enemies){
-                enemy.update(gameTime);
+            //player.update(gameTime);
+            //ground.update(gameTime);
+            ////update enemies and Check for collision
+            //foreach (Enemy enemy in level.enemies){
+            //    enemy.update(gameTime);
 
-                // Check collision with person
-                if (GameObject.IntersectPixels( player,enemy))
-                {
-                    player.hit(enemy);
-                    enemy.hit();
-                }
+            //    // Check collision with person
+            //    if (GameObject.IntersectPixels( player,enemy))
+            //    {
+            //        player.hit(enemy);
+            //        enemy.hit();
+            //    }
 
-                // Remove this enemy if it have fallen off the screen
-                if (enemy.position.X < 0 || enemy.position.Y > Window.ClientBounds.Height)
-                {
-                    enemies.Remove(enemy);
-                    Eggo.world.RemoveBody(enemy.Body);
-                    break;
-                }
-            }
+            //    // Remove this enemy if it have fallen off the screen
+            //    if (enemy.position.X < 0 || enemy.position.Y > Window.ClientBounds.Height)
+            //    {
+            //        level.enemies.Remove(enemy);
+            //        Eggo.world.RemoveBody(enemy.Body);
+            //        break;
+            //    }
+            //}
+            level.Update(Content, gameTime, Window);
             base.Update(gameTime);
         }
 
@@ -197,14 +200,16 @@ namespace Eggo
             spriteBatch.Begin();
               
             GraphicsDevice.Clear(Color.CadetBlue);
-            spriteBatch.Draw(background, new Vector2(0, 0), Color.Wheat);
+            //spriteBatch.Draw(background, new Vector2(0, 0), Color.Wheat);
             
-            player.draw(spriteBatch);
-            ground.draw(spriteBatch);
-            foreach (Enemy enemy in enemies) { 
-                enemy.draw(spriteBatch);
-                //enemy.drawBoundingBox(spriteBatch, GraphicsDevice); 
-            }
+            
+            level.Draw(spriteBatch);
+            //player.draw(spriteBatch);
+            //ground.draw(spriteBatch);
+            //foreach (Enemy enemy in level.enemies) { 
+            //    enemy.draw(spriteBatch);
+            //    //enemy.drawBoundingBox(spriteBatch, GraphicsDevice); 
+            //}
 
             spriteBatch.DrawString(font,"Score : "+score,scorePos,Color.WhiteSmoke);
             base.Draw(gameTime);

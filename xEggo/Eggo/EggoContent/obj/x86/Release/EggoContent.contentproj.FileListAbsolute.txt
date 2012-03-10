@@ -1,1 +1,2 @@
 C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\EggoContent\obj\x86\Release\ResolveAssemblyReference.cache
+E:\Work\Eggo\xEggo\Eggo\EggoContent\obj\x86\Release\ResolveAssemblyReference.cache

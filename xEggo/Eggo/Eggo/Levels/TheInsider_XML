@@ -1,0 +1,25 @@
+<level>
+	<number> 1 </number>
+	<size x = "500" y = "500" />
+	<maxTime> 120 </maxTime>
+	<interarrivalTime> 0 </interarrivalTime>
+	<playerPosition> 100 </playerPosition>
+	<obstacles>
+		<obstacle x = "230" y = "320" type = "1" />
+	</obstacles>
+	<hotspots>
+	</hotspots>
+	<objects> 1,2,3 </objects>
+	<dangerousObjects></dangerousObjects>
+	<enemies>
+		<maxNumber> 30 </maxNumber>
+		<initialEnemies>
+			<initialEnemy type = "1" number = "8" entryBehaviour= "0,1" />
+			</initialEnemies>
+		<enemy type = "1" maxNoInLevelPerTime = "15" direction = "1" entryBehaviour= "1" >
+			<constraints>
+				<constraint type = "0" probability = "1" />
+			</constraints>
+		</enemy>
+	</enemies>
+</level>

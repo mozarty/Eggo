@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\enemy-bite-spritesheet.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\enemy-bite-spritesheet.xnb</Output>
       <Time>2012-02-26T00:55:47.8939366+02:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\enemy-death-spritesheet.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\enemy-death-spritesheet.xnb</Output>
       <Time>2012-02-26T00:55:47.8969368+02:00</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\enemy-walking-spritesheet.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\enemy-walking-spritesheet.xnb</Output>
       <Time>2012-02-26T00:55:47.8989369+02:00</Time>
     </Item>
     <Item>
@@ -34,7 +34,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\hit sprite sheet.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\hit sprite sheet.xnb</Output>
       <Time>2012-02-28T13:21:56.7891919+02:00</Time>
     </Item>
     <Item>
@@ -43,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\idle.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\idle.xnb</Output>
       <Time>2012-02-28T13:16:43.4742714+02:00</Time>
     </Item>
     <Item>
@@ -52,17 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\walking-10-frame-eggo-spritesheet.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\walking-10-frame-eggo-spritesheet.xnb</Output>
       <Time>2012-02-28T13:20:39.9547973+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Courier New.spritefont</Source>
-      <Name>Courier New</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\Courier New.xnb</Output>
-      <Time>2010-08-26T14:57:28+03:00</Time>
     </Item>
     <Item>
       <Source>Materials\blank.png</Source>
@@ -70,7 +61,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\Materials\blank.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\Materials\blank.xnb</Output>
       <Time>2011-03-20T00:00:30+02:00</Time>
     </Item>
     <Item>
@@ -79,7 +70,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\Materials\dots.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\Materials\dots.xnb</Output>
       <Time>2011-03-20T00:00:30+02:00</Time>
     </Item>
     <Item>
@@ -88,7 +79,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\Materials\pavement.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\Materials\pavement.xnb</Output>
       <Time>2011-03-20T00:00:30+02:00</Time>
     </Item>
     <Item>
@@ -97,7 +88,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\Materials\squares.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\Materials\squares.xnb</Output>
       <Time>2011-03-20T00:00:30+02:00</Time>
     </Item>
     <Item>
@@ -106,7 +97,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\Materials\waves.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\Materials\waves.xnb</Output>
       <Time>2011-03-20T00:00:30+02:00</Time>
     </Item>
     <Item>
@@ -115,8 +106,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\background-800 480.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\background-800 480.xnb</Output>
       <Time>2012-03-02T18:36:51.7784471+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Courier New.spritefont</Source>
+      <Name>Courier New</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\Courier New.xnb</Output>
+      <Time>2010-08-26T13:57:28+02:00</Time>
     </Item>
     <Item>
       <Source>lines.fx</Source>
@@ -124,7 +124,7 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\lines.xnb</Output>
+      <Output>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\lines.xnb</Output>
       <Time>2012-02-29T20:12:28.6026418+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
@@ -133,39 +133,39 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Release</BuildConfiguration>
       <CompressContent>true</CompressContent>
-      <RootDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\EggoContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\EggoContent\obj\x86\Release\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\DELL\Documents\Visual Studio 2010\Projects\xEggo\Eggo\Eggo\bin\x86\Release\Content\</OutputDirectory>
+      <RootDirectory>E:\Work\Eggo\xEggo\Eggo\EggoContent\</RootDirectory>
+      <LoggerRootDirectory>E:\Work\Eggo\xEggo\Eggo\Eggo\</LoggerRootDirectory>
+      <IntermediateDirectory>E:\Work\Eggo\xEggo\Eggo\EggoContent\obj\x86\Release\</IntermediateDirectory>
+      <OutputDirectory>E:\Work\Eggo\xEggo\Eggo\Eggo\bin\x86\Release\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2010-08-23T13:41:18+03:00</Value>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2010-08-23T13:41:18+03:00</Value>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2010-08-23T13:41:18+03:00</Value>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2010-08-23T13:41:18+03:00</Value>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2010-08-23T13:41:18+03:00</Value>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2010-08-23T13:41:18+03:00</Value>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-02-15T21:50:16.5241104+02:00</Value>
+        <Value>2012-03-05T13:10:41.0645938+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

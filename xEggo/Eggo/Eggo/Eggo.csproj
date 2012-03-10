@@ -110,9 +110,14 @@
   <ItemGroup>
     <Compile Include="AssetCreator.cs" />
     <Compile Include="ConvertUnits.cs" />
+    <Compile Include="Entities\DangerousObject.cs" />
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\GameObject.cs" />
     <Compile Include="Entities\Ground.cs" />
+    <Compile Include="Entities\HotSpot.cs" />
+    <Compile Include="Entities\Level.cs" />
+    <Compile Include="Entities\Objct.cs" />
+    <Compile Include="Entities\Obstacle.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\ZombieEnemy.cs" />
     <Compile Include="LineBatch.cs" />
@@ -167,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Levels\TheInsider_XML" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
