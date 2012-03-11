@@ -25,13 +25,15 @@ namespace Eggo.Entities
         private List<Obstacle> mapObstacles;
         private List<HotSpot> mapHotSpots;
 
-
-
+        private List<GenerationConstraint> onDeathGeneratedEnemyIds;
+        private List<GenerationConstraint> onInterarrivalTimeGeneratedEnemyIds;
+        private Dictionary<int, EnemyCounter> enemiesCounterMap;
+        
         private Random random;
 
         private Texture2D background;
         public static Player player;
-        Ground ground;
+        private Ground ground;
         public List<Enemy> enemies;
 
         public static Level GetInstance()
@@ -60,6 +62,7 @@ namespace Eggo.Entities
             float.TryParse(obj.Descendants("size").First().LastAttribute.Value, out mapSize.Y);
             float.TryParse(obj.Descendants("playerPosition").First().Value, out playerPos.X);
             //TODO: Load the player Y position based on the level number
+            
             //Load the obstacles
             var obstacles = obj.Descendants("obstacle");
             mapObstacles = new List<Obstacle>();
@@ -123,6 +126,19 @@ namespace Eggo.Entities
                 string behaviours = i.LastAttribute.Value;
                 InitialEnemy en = new InitialEnemy(type, number, behaviours);
                 this.initialEnemies.Add(en);
+
+                //Update enemy counter map
+                if (!enemiesCounterMap.ContainsKey(en.Type))
+                {
+                    EnemyCounter enemyCounter = new EnemyCounter();
+                    enemyCounter.CurrentCount += en.Number;
+                    enemiesCounterMap.Add(en.Type, enemyCounter);
+                }
+                else
+                {
+                    EnemyCounter enemyCounter = enemiesCounterMap[en.Type];
+                    enemyCounter.CurrentCount += en.Number;
+                }
             }
 
             //Load the enemies types and constraints
@@ -141,9 +157,34 @@ namespace Eggo.Entities
                     int cType = int.Parse(c.FirstAttribute.Value);
                     double prob = double.Parse(c.LastAttribute.Value);
                     GenerationConstraint constraint = new GenerationConstraint(cType, prob);
-                    en.AddConstraint(constraint);
+                    //en.AddConstraint(constraint);
+
+                    //If constraint is generate on death
+                    if (cType == 0)
+                    {
+                        //Add to on death generation event 
+                        onDeathGeneratedEnemyIds.Add(constraint);
+                    }
+                    else
+                    {
+                        //Add to on interarrival time generation event 
+                        onInterarrivalTimeGeneratedEnemyIds.Add(constraint);
+                    }
                 }
                 levelEnemies.Add(en);
+
+                //Update enemy counter map
+                if (!enemiesCounterMap.ContainsKey(en.Type))
+                {
+                    EnemyCounter enemyCounter = new EnemyCounter();
+                    enemyCounter.MaximumCount += en.MaxAlive;
+                    enemiesCounterMap.Add(en.Type, enemyCounter);
+                }
+                else
+                {
+                    EnemyCounter enemyCounter = enemiesCounterMap[en.Type];
+                    enemyCounter.MaximumCount += en.MaxAlive;
+                }
             }
 
 
@@ -153,7 +194,6 @@ namespace Eggo.Entities
                 player.position = new Vector2((int)playerPos.X, player.position.Y);
             ground = new Ground();
             enemies = new List<Enemy>();
-
         }
 
         public void Initialize()
@@ -198,7 +238,7 @@ namespace Eggo.Entities
                                 z.isFalling = false;
                                 enemies.Add(z);
                             }
-                            ZombieEnemy.numberOfAliveEnemies++;
+                            //ZombieEnemy.numberOfAliveEnemies++;
                         }
                         maxEnemiesToSpawn -= e.Number;
                         break;
@@ -238,20 +278,22 @@ namespace Eggo.Entities
                 {
                     enemies.Remove(enemy);
                     Eggo.world.RemoveBody(enemy.Body);
-                    ZombieEnemy.numberOfAliveEnemies--;
-                    //Load another enemy
-                    //if (ZombieEnemy.numberOfAliveEnemies < levelEnemies[0].MaxAlive && maxEnemiesToSpawn >= 0)
-                    {
-                        ZombieEnemy en = new ZombieEnemy();
-                        float y = (float)random.NextDouble() *
-                                    (Window.ClientBounds.Height - en.boundingRectangle.Height);
-                        en.position = new Vector2(Window.ClientBounds.Width - y/2, 350);
-                        en.isFalling = false;
-                        enemies.Add(en);
-                        en.load(content);
-                        ZombieEnemy.numberOfAliveEnemies++;
-                        maxEnemiesToSpawn--;
-                    }
+                    
+                    //ZombieEnemy.numberOfAliveEnemies--;
+                    ////Load another enemy
+                    ////if (ZombieEnemy.numberOfAliveEnemies < levelEnemies[0].MaxAlive && maxEnemiesToSpawn >= 0)
+                    //{
+                    //    ZombieEnemy en = new ZombieEnemy();
+                    //    float y = (float)random.NextDouble() *
+                    //                (Window.ClientBounds.Height - en.boundingRectangle.Height);
+                    //    en.position = new Vector2(Window.ClientBounds.Width - y/2, 350);
+                    //    en.isFalling = false;
+                    //    enemies.Add(en);
+                    //    en.load(content);
+                    //    ZombieEnemy.numberOfAliveEnemies++;
+                    //    maxEnemiesToSpawn--;
+                    //}
+                    GenerateEnemyOnEvent(onDeathGeneratedEnemyIds, Window);
                     break;
                 }
 
@@ -269,6 +311,112 @@ namespace Eggo.Entities
             }
         }
 
+        /*
+         * Generate enemy on event 
+         * Input: Clone of the list to get the type of enemy required
+         * Return: Enemy object, null if none
+         */
+        private Enemy GenerateEnemyOnEvent(List<GenerationConstraint> eventEnemiesList, GameWindow window)
+        {
+            Enemy requiredEnemy = null;
+
+            //Choose random enemy generation constraint
+            GenerationConstraint randomGenerationConstraint = null;
+            bool enemyFound = false;
+            while (!enemyFound && eventEnemiesList.Count != 0)
+            {
+                //Get random generation constraint 
+                randomGenerationConstraint = RandomEnemyGenerationBasedOnConstraints(ref eventEnemiesList);
+
+                if (enemiesCounterMap.ContainsKey(randomGenerationConstraint.EnemyType))
+                {
+                    EnemyCounter enemyCounter = enemiesCounterMap[randomGenerationConstraint.EnemyType];
+                    if (enemyCounter.CurrentCount < enemyCounter.MaximumCount)
+                    {
+                        //Generate enemy
+                        LevelEnemy levelEnemy = GetLevelEnemyBasedOnType(randomGenerationConstraint.EnemyType);
+                        GenerateEnemy(levelEnemy, window);
+
+                        //Set enemy found flag
+                        enemyFound = true;
+                    }
+                }
+            }
+
+            return requiredEnemy;
+        }
+
+        // Get random enemy on generation event 
+        // (Note: For now choose uniform, but we need to choose based on the probability of constraint)
+        private GenerationConstraint RandomEnemyGenerationBasedOnConstraints(
+            ref List<GenerationConstraint> eventEnemiesList)
+        {
+            GenerationConstraint requiredGenerationConstraint = null;
+
+            //Generate random index 
+            int randomIndex = random.Next(0, eventEnemiesList.Count) - 1;
+
+            //Get generation constraint
+            requiredGenerationConstraint = eventEnemiesList.ElementAt(randomIndex);
+
+            // Remove from event list
+            eventEnemiesList.RemoveAt(randomIndex);
+
+            return requiredGenerationConstraint;
+        }
+
+        private Enemy GenerateEnemy(LevelEnemy enemy, GameWindow Window)
+        {
+            Enemy requiredEnemy = null;
+
+            switch (enemy.Type)
+            {
+                case 1:
+                    ZombieEnemy z = new ZombieEnemy();
+                    int currentBehaviour = enemy.EntryBehaviours[0];
+                    if (enemy.EntryBehaviours.Length == 2)
+                    {
+                        if (random.NextDouble() > 0.5)
+                        {
+                            currentBehaviour = enemy.EntryBehaviours[1];
+                        }
+                    }
+                    if (currentBehaviour == 0)
+                    {
+                        float x = (float)random.NextDouble() *
+                            (Window.ClientBounds.Width - z.boundingRectangle.Width);
+                        z.position = new Vector2(x, 0);
+                        z.isFalling = true;
+                        enemies.Add(z);
+                    }
+                    else if (currentBehaviour == 1)
+                    {
+                        //TODO: make it depend on the level size
+                        float y = (float)random.NextDouble() *
+                            (Window.ClientBounds.Height - z.boundingRectangle.Height);
+                        z.position = new Vector2(Window.ClientBounds.Width - y / 2, 350);
+                        z.isFalling = false;
+                        enemies.Add(z);
+                    }
+
+                    break;
+                //TODO: Add the rest of enemies types
+                default:
+                    break;
+            }
+            maxEnemiesToSpawn--;
+
+            return requiredEnemy;
+        }
+
+        private LevelEnemy GetLevelEnemyBasedOnType(int enemyType)
+        {
+            LevelEnemy requiredLevelEnemy = null;
+
+            //TODO
+
+            return requiredLevelEnemy;
+        }
     }
 
     class InitialEnemy
@@ -320,7 +468,7 @@ namespace Eggo.Entities
         private int maxAlive;
         private int[] entryBehaviour;
         private int direction; //0 for stiller, 1 for left, 2 for right
-        private List<GenerationConstraint> constraints;
+        //private List<GenerationConstraint> constraints;
 
         public LevelEnemy(int type, int max, string behaviours, int dir)
         {
@@ -334,23 +482,23 @@ namespace Eggo.Entities
             this.type = type;
             this.maxAlive = max;
             this.direction = dir;
-            this.constraints = new List<GenerationConstraint>();
+            //this.constraints = new List<GenerationConstraint>();
         }
 
-        public void AddConstraint(GenerationConstraint contraint)
-        {
-            this.constraints.Add(contraint);
-        }
+        //public void AddConstraint(GenerationConstraint contraint)
+        //{
+        //    this.constraints.Add(contraint);
+        //}
 
-        public List<GenerationConstraint> Contraints
-        {
-            get
-            {
-                return this.constraints;
-            }
-        }
+        //public List<GenerationConstraint> Contraints
+        //{
+        //    get
+        //    {
+        //        return this.constraints;
+        //    }
+        //}
 
-        public int[] EntrBehaviours
+        public int[] EntryBehaviours
         {
             get
             {
@@ -381,26 +529,24 @@ namespace Eggo.Entities
                 return this.direction;
             }
         }
-
-
     }
 
     class GenerationConstraint
     {
-        private int type;
+        private int enemyType;
         private double probability;
 
-        public GenerationConstraint(int type, double prob)
+        public GenerationConstraint(int enemyType, double prob)
         {
-            this.type = type;
+            this.enemyType = enemyType;
             this.probability = prob;
         }
 
-        public int Type
+        public int EnemyType
         {
             get
             {
-                return this.type;
+                return this.enemyType;
             }
         }
 
@@ -410,6 +556,30 @@ namespace Eggo.Entities
             {
                 return this.probability;
             }
+        }
+    }
+
+    class EnemyCounter
+    {
+        private int currentCount;
+        private int maximumCount;
+
+        public EnemyCounter()
+        {
+            currentCount = 0;
+            maximumCount = 0;
+        }
+
+        public int CurrentCount
+        {
+            get { return currentCount; }
+            set { currentCount = value; }
+        }
+
+        public int MaximumCount
+        {
+            get { return maximumCount; }
+            set { maximumCount = value; }
         }
     }
 }

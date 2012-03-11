@@ -14,5 +14,6 @@ namespace Eggo.Entities
         abstract public void update(GameTime gameTime);
         abstract public void die();
         abstract public void hit();
+        abstract public int getType();
     }
 }

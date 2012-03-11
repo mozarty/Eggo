@@ -13,6 +13,8 @@ namespace Eggo.Entities
 {
     class ZombieEnemy : Enemy
     {
+        private const int type = 1;
+
         const int WALKING_SPEED = 200;
         const int ATTACK_SPEED = 100;
         const int DYING_SPEED = 100;
@@ -23,7 +25,7 @@ namespace Eggo.Entities
 
         public Boolean isFalling = false;
 
-        public static int numberOfAliveEnemies = 0;
+        //public static int numberOfAliveEnemies = 0;
 
         List<Color[]> walkingTextureData=new List<Color[]>();
         List<Color[]> biteTextureData=new List<Color[]>();
@@ -88,6 +90,12 @@ namespace Eggo.Entities
             myBody.Position = new Vector2(800, 120);
 
         }
+
+        public override int getType()
+        {
+            return type;
+        }
+
         public override void load(ContentManager content)
         {
             walkingSheet = content.Load<Texture2D>("enemy-walking-spritesheet");
