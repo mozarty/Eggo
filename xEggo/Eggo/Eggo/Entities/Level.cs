@@ -12,30 +12,27 @@ namespace Eggo.Entities
 {
     class Level
     {
-        static Level instance;
+        public static Level instance;
         private int levelNumber;
         private int levelDuration;
         private int maxEnemiesToSpawn;
         private Vector2 mapSize;
         private Vector2 playerPos;
-        private List<InitialEnemy> initialEnemies;
-        private List<LevelEnemy> levelEnemies;
+        public static Player player;
+        private Ground ground;
         private int[] AllowedObjects;
         private int[] AllowedDObjects;
         private List<Obstacle> mapObstacles;
         private List<HotSpot> mapHotSpots;
-
+        private List<InitialEnemy> initialEnemies;
+        private List<LevelEnemy> levelEnemies;
         private List<GenerationConstraint> onDeathGeneratedEnemyIds;
         private List<GenerationConstraint> onInterarrivalTimeGeneratedEnemyIds;
         private Dictionary<int, EnemyCounter> enemiesCounterMap;
-        
-        private Random random;
-
-        private Texture2D background;
-        public static Player player;
-        private Ground ground;
         public List<Enemy> enemies;
-
+        private Random random;
+        private Texture2D background;
+  
         public static Level GetInstance()
         {
             if (instance == null)
@@ -50,8 +47,13 @@ namespace Eggo.Entities
 
         public Level(string xmlFile)
         {
+            //Initialize 
+            enemiesCounterMap = new Dictionary<int, EnemyCounter>();
+            onDeathGeneratedEnemyIds = new List<GenerationConstraint>();
+            onInterarrivalTimeGeneratedEnemyIds = new List<GenerationConstraint>();
             random = new Random();
             instance = this;
+
             //Read the XML File and load it's information into the Level Class
             StreamReader sr = new StreamReader(xmlFile);
             string xmlContent = sr.ReadToEnd();
@@ -157,7 +159,6 @@ namespace Eggo.Entities
                     int cType = int.Parse(c.FirstAttribute.Value);
                     double prob = double.Parse(c.LastAttribute.Value);
                     GenerationConstraint constraint = new GenerationConstraint(cType, prob);
-                    //en.AddConstraint(constraint);
 
                     //If constraint is generate on death
                     if (cType == 0)
@@ -186,7 +187,6 @@ namespace Eggo.Entities
                     enemyCounter.MaximumCount += en.MaxAlive;
                 }
             }
-
 
             if (player == null)
                 player = new Player((int)playerPos.X);
@@ -238,7 +238,6 @@ namespace Eggo.Entities
                                 z.isFalling = false;
                                 enemies.Add(z);
                             }
-                            //ZombieEnemy.numberOfAliveEnemies++;
                         }
                         maxEnemiesToSpawn -= e.Number;
                         break;
@@ -247,9 +246,11 @@ namespace Eggo.Entities
                         break;
                 }
             }
+            
             //Load player and ground
             player.load(content);
             ground.load(content);
+            
             //Load the enemies in the list of alive enemies
             foreach (var en in enemies)
             {
@@ -257,11 +258,12 @@ namespace Eggo.Entities
             }
         }
 
-        public void Update(ContentManager content, GameTime gameTime, GameWindow Window)
+        public void Update(ContentManager content, GameTime gameTime, GameWindow window)
         {
             player.update(gameTime);
             ground.update(gameTime);
-            //update enemies and Check for collision
+            
+            //Update enemies and Check for collision
             foreach (Enemy enemy in enemies)
             {
                 enemy.update(gameTime);
@@ -274,26 +276,13 @@ namespace Eggo.Entities
                 }
 
                 // Remove this enemy if it have fallen off the screen
-                if (enemy.position.X < 0 || enemy.position.Y > Window.ClientBounds.Height)
+                if (enemy.position.X < 0 || enemy.position.Y > window.ClientBounds.Height)
                 {
                     enemies.Remove(enemy);
                     Eggo.world.RemoveBody(enemy.Body);
                     
-                    //ZombieEnemy.numberOfAliveEnemies--;
-                    ////Load another enemy
-                    ////if (ZombieEnemy.numberOfAliveEnemies < levelEnemies[0].MaxAlive && maxEnemiesToSpawn >= 0)
-                    //{
-                    //    ZombieEnemy en = new ZombieEnemy();
-                    //    float y = (float)random.NextDouble() *
-                    //                (Window.ClientBounds.Height - en.boundingRectangle.Height);
-                    //    en.position = new Vector2(Window.ClientBounds.Width - y/2, 350);
-                    //    en.isFalling = false;
-                    //    enemies.Add(en);
-                    //    en.load(content);
-                    //    ZombieEnemy.numberOfAliveEnemies++;
-                    //    maxEnemiesToSpawn--;
-                    //}
-                    GenerateEnemyOnEvent(onDeathGeneratedEnemyIds, Window);
+                    //Load another enemy
+                    GenerateEnemyOnEvent(onDeathGeneratedEnemyIds, content, window);
                     break;
                 }
 
@@ -316,7 +305,8 @@ namespace Eggo.Entities
          * Input: Clone of the list to get the type of enemy required
          * Return: Enemy object, null if none
          */
-        private Enemy GenerateEnemyOnEvent(List<GenerationConstraint> eventEnemiesList, GameWindow window)
+        private Enemy GenerateEnemyOnEvent(List<GenerationConstraint> eventEnemiesList, 
+            ContentManager content, GameWindow window)
         {
             Enemy requiredEnemy = null;
 
@@ -335,7 +325,7 @@ namespace Eggo.Entities
                     {
                         //Generate enemy
                         LevelEnemy levelEnemy = GetLevelEnemyBasedOnType(randomGenerationConstraint.EnemyType);
-                        GenerateEnemy(levelEnemy, window);
+                        GenerateEnemy(levelEnemy, content, window);
 
                         //Set enemy found flag
                         enemyFound = true;
@@ -365,7 +355,7 @@ namespace Eggo.Entities
             return requiredGenerationConstraint;
         }
 
-        private Enemy GenerateEnemy(LevelEnemy enemy, GameWindow Window)
+        private Enemy GenerateEnemy(LevelEnemy enemy, ContentManager content, GameWindow Window)
         {
             Enemy requiredEnemy = null;
 
@@ -398,7 +388,7 @@ namespace Eggo.Entities
                         z.isFalling = false;
                         enemies.Add(z);
                     }
-
+                    z.load(content);
                     break;
                 //TODO: Add the rest of enemies types
                 default:
@@ -413,7 +403,14 @@ namespace Eggo.Entities
         {
             LevelEnemy requiredLevelEnemy = null;
 
-            //TODO
+            foreach (LevelEnemy levelEnemy in levelEnemies)
+            {
+                if (levelEnemy.Type == enemyType)
+                {
+                    requiredLevelEnemy = levelEnemy;
+                    break;
+                }
+            }
 
             return requiredLevelEnemy;
         }
@@ -468,7 +465,6 @@ namespace Eggo.Entities
         private int maxAlive;
         private int[] entryBehaviour;
         private int direction; //0 for stiller, 1 for left, 2 for right
-        //private List<GenerationConstraint> constraints;
 
         public LevelEnemy(int type, int max, string behaviours, int dir)
         {
@@ -482,21 +478,7 @@ namespace Eggo.Entities
             this.type = type;
             this.maxAlive = max;
             this.direction = dir;
-            //this.constraints = new List<GenerationConstraint>();
         }
-
-        //public void AddConstraint(GenerationConstraint contraint)
-        //{
-        //    this.constraints.Add(contraint);
-        //}
-
-        //public List<GenerationConstraint> Contraints
-        //{
-        //    get
-        //    {
-        //        return this.constraints;
-        //    }
-        //}
 
         public int[] EntryBehaviours
         {
