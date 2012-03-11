@@ -32,6 +32,7 @@ namespace Eggo.Entities
         public List<Enemy> enemies;
         private Random random;
         private Texture2D background;
+        private TimeSpan eventTimeSpan;
   
         public static Level GetInstance()
         {
@@ -209,6 +210,7 @@ namespace Eggo.Entities
             {
                 switch (e.Type)
                 {
+                    //Case Zombie enemy
                     case 1:
                         for (int i = 0; i < e.Number; i++)
                         {
@@ -239,12 +241,20 @@ namespace Eggo.Entities
                                 enemies.Add(z);
                             }
                         }
-                        maxEnemiesToSpawn -= e.Number;
                         break;
+
+                    //Case Bomber enemy
+                    case 2:
+                        break;
+                    
                     //TODO: Add the rest of enemies types
+                    
                     default:
                         break;
                 }
+
+                //Decrease level's maximum enemies count
+                maxEnemiesToSpawn -= e.Number;
             }
             
             //Load player and ground
@@ -260,6 +270,11 @@ namespace Eggo.Entities
 
         public void Update(ContentManager content, GameTime gameTime, GameWindow window)
         {
+            if(gameTime.ElapsedGameTime.Seconds == 0) 
+            {
+                eventTimeSpan = gameTime.ElapsedGameTime;        
+            }
+
             player.update(gameTime);
             ground.update(gameTime);
             
@@ -285,7 +300,12 @@ namespace Eggo.Entities
                     GenerateEnemyOnEvent(onDeathGeneratedEnemyIds, content, window);
                     break;
                 }
+            }
 
+            //TODO: Implement Interarrival time as constant 
+            if (gameTime.ElapsedGameTime.Seconds - eventTimeSpan.Seconds >= 10)
+            {
+                GenerateEnemyOnEvent(onInterarrivalTimeGeneratedEnemyIds, content, window);
             }
         }
 
@@ -305,35 +325,34 @@ namespace Eggo.Entities
          * Input: Clone of the list to get the type of enemy required
          * Return: Enemy object, null if none
          */
-        private Enemy GenerateEnemyOnEvent(List<GenerationConstraint> eventEnemiesList, 
+        private void GenerateEnemyOnEvent(List<GenerationConstraint> eventEnemiesList, 
             ContentManager content, GameWindow window)
         {
-            Enemy requiredEnemy = null;
-
-            //Choose random enemy generation constraint
-            GenerationConstraint randomGenerationConstraint = null;
-            bool enemyFound = false;
-            while (!enemyFound && eventEnemiesList.Count != 0)
+            if (maxEnemiesToSpawn != 0)
             {
-                //Get random generation constraint 
-                randomGenerationConstraint = RandomEnemyGenerationBasedOnConstraints(ref eventEnemiesList);
-
-                if (enemiesCounterMap.ContainsKey(randomGenerationConstraint.EnemyType))
+                //Choose random enemy generation constraint
+                GenerationConstraint randomGenerationConstraint = null;
+                bool enemyFound = false;
+                while (!enemyFound && eventEnemiesList.Count != 0)
                 {
-                    EnemyCounter enemyCounter = enemiesCounterMap[randomGenerationConstraint.EnemyType];
-                    if (enemyCounter.CurrentCount < enemyCounter.MaximumCount)
-                    {
-                        //Generate enemy
-                        LevelEnemy levelEnemy = GetLevelEnemyBasedOnType(randomGenerationConstraint.EnemyType);
-                        GenerateEnemy(levelEnemy, content, window);
+                    //Get random generation constraint 
+                    randomGenerationConstraint = RandomEnemyGenerationBasedOnConstraints(ref eventEnemiesList);
 
-                        //Set enemy found flag
-                        enemyFound = true;
+                    if (enemiesCounterMap.ContainsKey(randomGenerationConstraint.EnemyType))
+                    {
+                        EnemyCounter enemyCounter = enemiesCounterMap[randomGenerationConstraint.EnemyType];
+                        if (enemyCounter.CurrentCount < enemyCounter.MaximumCount)
+                        {
+                            //Generate enemy
+                            LevelEnemy levelEnemy = GetLevelEnemyBasedOnType(randomGenerationConstraint.EnemyType);
+                            GenerateEnemy(levelEnemy, content, window);
+
+                            //Set enemy found flag
+                            enemyFound = true;
+                        }
                     }
                 }
             }
-
-            return requiredEnemy;
         }
 
         // Get random enemy on generation event 
@@ -355,12 +374,11 @@ namespace Eggo.Entities
             return requiredGenerationConstraint;
         }
 
-        private Enemy GenerateEnemy(LevelEnemy enemy, ContentManager content, GameWindow Window)
+        private void GenerateEnemy(LevelEnemy enemy, ContentManager content, GameWindow Window)
         {
-            Enemy requiredEnemy = null;
-
             switch (enemy.Type)
             {
+                //Case Zombie enemy
                 case 1:
                     ZombieEnemy z = new ZombieEnemy();
                     int currentBehaviour = enemy.EntryBehaviours[0];
@@ -390,13 +408,17 @@ namespace Eggo.Entities
                     }
                     z.load(content);
                     break;
+
+                //Case Bomber enemy
+                case 2:
+                    break;
+
                 //TODO: Add the rest of enemies types
+
                 default:
                     break;
             }
             maxEnemiesToSpawn--;
-
-            return requiredEnemy;
         }
 
         private LevelEnemy GetLevelEnemyBasedOnType(int enemyType)
