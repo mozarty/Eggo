@@ -253,6 +253,35 @@ namespace Eggo.Entities
 
                     //Case Bomber enemy
                     case 2:
+                        for (int i = 0; i < e.Number; i++)
+                        {
+                            Bomberia b = new Bomberia();
+                            int currentBehaviour = e.EntryBehaviours[0];
+                            if (e.EntryBehaviours.Length == 2)
+                            {
+                                if (random.NextDouble() > 0.5)
+                                {
+                                    currentBehaviour = e.EntryBehaviours[1];
+                                }
+                            }
+                            if (currentBehaviour == 0)
+                            {
+                                float x = (float)random.NextDouble() *
+                                    (Window.ClientBounds.Width - b.boundingRectangle.Width);
+                                b.position = new Vector2(x, 0);
+                                b.isFalling = true;
+                                enemies.Add(b);
+                            }
+                            else if (currentBehaviour == 1)
+                            {
+                                //TODO: make it depend on the level size
+                                float y = (float)random.NextDouble() *
+                                    (Window.ClientBounds.Height - b.boundingRectangle.Height);
+                                b.position = new Vector2(Window.ClientBounds.Width - y / 2, 350);
+                                b.isFalling = false;
+                                enemies.Add(b);
+                            }
+                        }
                         break;
                     
                     //TODO: Add the rest of enemies types
@@ -399,12 +428,13 @@ namespace Eggo.Entities
 
         private void GenerateEnemy(LevelEnemy enemy, ContentManager content, GameWindow Window)
         {
+            int currentBehaviour = -1;
             switch (enemy.Type)
             {
                 //Case Zombie enemy
                 case 1:
                     ZombieEnemy z = new ZombieEnemy();
-                    int currentBehaviour = enemy.EntryBehaviours[0];
+                    currentBehaviour = enemy.EntryBehaviours[0];
                     if (enemy.EntryBehaviours.Length == 2)
                     {
                         if (random.NextDouble() > 0.5)
@@ -434,6 +464,33 @@ namespace Eggo.Entities
 
                 //Case Bomber enemy
                 case 2:
+                    Bomberia b = new Bomberia();
+                    currentBehaviour = enemy.EntryBehaviours[0];
+                    if (enemy.EntryBehaviours.Length == 2)
+                    {
+                        if (random.NextDouble() > 0.5)
+                        {
+                            currentBehaviour = enemy.EntryBehaviours[1];
+                        }
+                    }
+                    if (currentBehaviour == 0)
+                    {
+                        float x = (float)random.NextDouble() *
+                            (Window.ClientBounds.Width - b.boundingRectangle.Width);
+                        b.position = new Vector2(x, 0);
+                        b.isFalling = true;
+                        enemies.Add(b);
+                    }
+                    else if (currentBehaviour == 1)
+                    {
+                        //TODO: make it depend on the level size
+                        float y = (float)random.NextDouble() *
+                            (Window.ClientBounds.Height - b.boundingRectangle.Height);
+                        b.position = new Vector2(Window.ClientBounds.Width - y / 2, 350);
+                        b.isFalling = false;
+                        enemies.Add(b);
+                    }
+                    b.load(content);
                     break;
 
                 //TODO: Add the rest of enemies types

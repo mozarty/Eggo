@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="AssetCreator.cs" />
     <Compile Include="ConvertUnits.cs" />
+    <Compile Include="Entities\Bomberia.cs" />
     <Compile Include="Entities\DangerousObject.cs" />
     <Compile Include="Entities\Enemy.cs" />
     <Compile Include="Entities\GameObject.cs" />
