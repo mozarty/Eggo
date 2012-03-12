@@ -32,7 +32,7 @@ namespace Eggo.Entities
         public List<Enemy> enemies;
         private Random random;
         private Texture2D background;
-        private TimeSpan eventTimeSpan;
+        private double timeSinceLastUpdateInSeconds = 0;
   
         public static Level GetInstance()
         {
@@ -167,7 +167,7 @@ namespace Eggo.Entities
                 {
                     int cType = int.Parse(c.FirstAttribute.Value);
                     double prob = double.Parse(c.LastAttribute.Value);
-                    GenerationConstraint constraint = new GenerationConstraint(cType, prob);
+                    GenerationConstraint constraint = new GenerationConstraint(en.Type, prob);
 
                     //If constraint is generate on death
                     if (cType == 0)
@@ -283,11 +283,6 @@ namespace Eggo.Entities
 
         public void Update(ContentManager content, GameTime gameTime, GameWindow window)
         {
-            if(gameTime.ElapsedGameTime.Seconds == 0) 
-            {
-                eventTimeSpan = gameTime.ElapsedGameTime;        
-            }
-
             player.update(gameTime);
             ground.update(gameTime);
             //Update hot spots
@@ -314,15 +309,22 @@ namespace Eggo.Entities
                     Eggo.world.RemoveBody(enemy.Body);
                     
                     //Load another enemy
-                    GenerateEnemyOnEvent(onDeathGeneratedEnemyIds, content, window);
+                    List<GenerationConstraint> clonedOnDeath = 
+                        onDeathGeneratedEnemyIds.Select(i => (GenerationConstraint)i.Clone()).ToList();
+                    GenerateEnemyOnEvent(clonedOnDeath, content, window);
                     break;
                 }
             }
 
             //TODO: Implement Interarrival time as constant 
-            if (gameTime.ElapsedGameTime.Seconds - eventTimeSpan.Seconds >= 10)
+            timeSinceLastUpdateInSeconds += gameTime.ElapsedGameTime.TotalSeconds;
+            if (timeSinceLastUpdateInSeconds >= 10)
             {
-                GenerateEnemyOnEvent(onInterarrivalTimeGeneratedEnemyIds, content, window);
+                //eventTimeSpan = gameTime.ElapsedGameTime;
+                timeSinceLastUpdateInSeconds = 0;
+                List<GenerationConstraint> clonedOnInterarrivalTime =
+                        onDeathGeneratedEnemyIds.Select(i => (GenerationConstraint)i.Clone()).ToList();
+                GenerateEnemyOnEvent(clonedOnInterarrivalTime, content, window);
             }
         }
 
@@ -357,7 +359,7 @@ namespace Eggo.Entities
                 while (!enemyFound && eventEnemiesList.Count != 0)
                 {
                     //Get random generation constraint 
-                    randomGenerationConstraint = RandomEnemyGenerationBasedOnConstraints(ref eventEnemiesList);
+                    randomGenerationConstraint = RandomEnemyGenerationBasedOnConstraints(eventEnemiesList);
 
                     if (enemiesCounterMap.ContainsKey(randomGenerationConstraint.EnemyType))
                     {
@@ -379,7 +381,7 @@ namespace Eggo.Entities
         // Get random enemy on generation event 
         // (Note: For now choose uniform, but we need to choose based on the probability of constraint)
         private GenerationConstraint RandomEnemyGenerationBasedOnConstraints(
-            ref List<GenerationConstraint> eventEnemiesList)
+           List<GenerationConstraint> eventEnemiesList)
         {
             GenerationConstraint requiredGenerationConstraint = null;
 
@@ -556,7 +558,7 @@ namespace Eggo.Entities
         }
     }
 
-    class GenerationConstraint
+    class GenerationConstraint : ICloneable
     {
         private int enemyType;
         private double probability;
@@ -581,6 +583,11 @@ namespace Eggo.Entities
             {
                 return this.probability;
             }
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 
