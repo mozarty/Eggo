@@ -87,15 +87,23 @@ namespace Eggo.Entities
             mapHotSpots = new List<HotSpot>();
             foreach (var h in hotspots)
             {
-                HotSpot hs = new HotSpot();
                 Vector2 pos = new Vector2();
                 float.TryParse(h.FirstAttribute.Value, out pos.X);
                 float.TryParse(h.Attributes().ElementAt(1).Value, out pos.Y);
                 int t;
                 int.TryParse(h.LastAttribute.Value, out t);
-                hs.Position = pos;
-                hs.Type = t;
-                mapHotSpots.Add(hs);
+                //Create a hot spot depending on the type
+                switch (t)
+                {
+                    case 1:
+                        Shredder hs = new Shredder();
+                        hs.position = pos;
+                        mapHotSpots.Add(hs);
+                        break;
+                    default:
+                        break;
+                }
+                
             }
 
             //Load the allowed objects
@@ -257,6 +265,11 @@ namespace Eggo.Entities
                 maxEnemiesToSpawn -= e.Number;
             }
             
+            //Load the hot spots
+            for (int i = 0; i < mapHotSpots.Count; i++)
+            {
+                mapHotSpots[i].load(content);
+            }
             //Load player and ground
             player.load(content);
             ground.load(content);
@@ -277,7 +290,11 @@ namespace Eggo.Entities
 
             player.update(gameTime);
             ground.update(gameTime);
-            
+            //Update hot spots
+            foreach (var spot in mapHotSpots)
+            {
+                spot.Update(gameTime);
+            }
             //Update enemies and Check for collision
             foreach (Enemy enemy in enemies)
             {
@@ -314,6 +331,10 @@ namespace Eggo.Entities
             spriteBatch.Draw(background, new Vector2(0, 0), Color.Wheat);
             player.draw(spriteBatch);
             ground.draw(spriteBatch);
+            foreach (var spot in mapHotSpots)
+            {
+                spot.draw(spriteBatch);
+            }
             foreach (Enemy enemy in enemies)
             {
                 enemy.draw(spriteBatch);
@@ -363,7 +384,7 @@ namespace Eggo.Entities
             GenerationConstraint requiredGenerationConstraint = null;
 
             //Generate random index 
-            int randomIndex = random.Next(0, eventEnemiesList.Count) - 1;
+            int randomIndex = random.Next(0, eventEnemiesList.Count -1);
 
             //Get generation constraint
             requiredGenerationConstraint = eventEnemiesList.ElementAt(randomIndex);

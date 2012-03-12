@@ -3,24 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Eggo.Entities
 {
-    class HotSpot
+    abstract public class HotSpot : GameObject
     {
-        private Vector2 position;
-        private int type;
-
-        public Vector2 Position
-        {
-            get;
-            set;
-        }
-
-        public int Type
-        {
-            get;
-            set;
-        }
+        abstract public void Update(GameTime gameTime);
+        abstract public int getType();
     }
 }

@@ -8,6 +8,7 @@
 		<obstacle x = "230" y = "320" type = "1" />
 	</obstacles>
 	<hotspots>
+		<hotspot x = "225" y = "120" type = "1" />
 	</hotspots>
 	<objects> 1,2,3 </objects>
 	<dangerousObjects></dangerousObjects>

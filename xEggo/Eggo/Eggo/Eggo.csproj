@@ -119,6 +119,7 @@
     <Compile Include="Entities\Objct.cs" />
     <Compile Include="Entities\Obstacle.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\Shredder.cs" />
     <Compile Include="Entities\ZombieEnemy.cs" />
     <Compile Include="LineBatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
