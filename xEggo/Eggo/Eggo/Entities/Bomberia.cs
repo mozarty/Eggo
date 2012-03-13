@@ -44,13 +44,13 @@ private const int type = 1;
             Rectangle rect;
             for (int i = 0; i < 4; i++)
             {
-                rect = new Rectangle(294 * i, 0, 296, 220);
+                rect = new Rectangle(294 * i, 0, 294, 220);
                 walkingAnim.Add(rect);
             }
 
             for (int i = 0; i < 9; i++)
             {
-                rect = new Rectangle(405 * i, 410, 405, 278);
+                rect = new Rectangle(227 * i, 410, 227, 278);
                 jumpAnim.Add(rect);
             }
 
@@ -75,13 +75,13 @@ private const int type = 1;
 
         public override void load(ContentManager content)
         {
-            //dyingSheet = content.Load<Texture2D>("1-eye-explode-spritesheet");
-            //jumpSheet = content.Load<Texture2D>("1-eye-jump-spritesheet");
-            //walkingSheet = content.Load<Texture2D>("1-eye-walking-spritesheet");
+            dyingSheet = content.Load<Texture2D>("1-eye-explode-spritesheet");
+            jumpSheet = content.Load<Texture2D>("1-eye-jump-spritesheet1");
+            walkingSheet = content.Load<Texture2D>("1-eye-walking-spritesheet");
 
-            walkingSheet = content.Load<Texture2D>("enemy-walking-spritesheet");
-            jumpSheet = content.Load<Texture2D>("enemy-bite-spritesheet");
-            dyingSheet = content.Load<Texture2D>("enemy-death-spritesheet");
+            //walkingSheet = content.Load<Texture2D>("enemy-walking-spritesheet");
+            //jumpSheet = content.Load<Texture2D>("enemy-bite-spritesheet");
+            //dyingSheet = content.Load<Texture2D>("enemy-death-spritesheet");
 
             fillTextureData(walkingTextureData,walkingAnim,walkingSheet);
             fillTextureData(jumpTextureData,jumpAnim,jumpSheet);
